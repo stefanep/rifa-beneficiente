@@ -1,8 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import { ref, onValue, set, Database } from "firebase/database";
+import { useEffect } from 'react';
+
 
 function App() {
+
+  // useEffect(() => {
+
+  //   const vendidosRef = ref(Database, 'numerosVendidos');
+  //   onValue(vendidosRef, (snapshot) => {
+  //     const data = snapshot.val();
+  //     if (data) {
+  //       setNumerosVendidos(data);
+  //     }
+  //   });
+  // }, []);
 
   const totalNumeros = 200;
   const [numerosSelecionados, setNumerosSelecionados] = useState([]);
@@ -12,7 +26,7 @@ function App() {
   const chavePix = '21982994628';
 
   const handleSelecionarNumero = (numero) => {
-    if (numerosVendidos.includes(numero)) return; 
+    if (numerosVendidos.includes(numero)) return;
     if (numerosSelecionados.includes(numero)) return;
 
     setNumerosSelecionados([...numerosSelecionados, numero]);
@@ -39,7 +53,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>🎊 Rifa de São João - Escolha seus Números 🎊</h1>
+      <h1> Rifa de São João - Escolha seus Números </h1>
 
       <div className="grid">
         {[...Array(totalNumeros)].map((_, index) => {
@@ -70,7 +84,7 @@ function App() {
       {mostrarPagamento && (
         <div className="modal">
           <div className="modal-content">
-            <h2>🎉 Quase lá!</h2>
+            <h2> Quase lá!</h2>
 
             <div className="resumo-numeros">
               <p><strong>Números escolhidos:</strong></p>
